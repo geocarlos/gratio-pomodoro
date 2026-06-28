@@ -195,10 +195,6 @@ export function useTimer(): {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings.focusDuration, settings.shortBreakDuration, settings.longBreakDuration])
 
-  useEffect(() => {
-    return () => clearTimer()
-  }, [clearTimer])
-
   const totalSeconds = getPhaseDuration(phase, settings)
   const progress = totalSeconds > 0 ? 1 - secondsLeft / totalSeconds : 0
   const minutes = Math.floor(secondsLeft / 60)

@@ -5,6 +5,7 @@ import { History } from './components/History/History'
 import { Settings } from './components/Settings/Settings'
 import { useSettingsStore } from './store/settingsStore'
 import { useTaskStore } from './store/taskStore'
+import { useTimer } from './hooks/useTimer'
 import styles from './App.module.css'
 
 type Tab = 'timer' | 'tasks' | 'history' | 'settings'
@@ -20,6 +21,7 @@ function App(): React.JSX.Element {
   const [activeTab, setActiveTab] = React.useState<Tab>('timer')
   const { load: loadSettings } = useSettingsStore()
   const { load: loadTasks } = useTaskStore()
+  const timer = useTimer()
 
   useEffect(() => {
     loadSettings()
@@ -32,18 +34,10 @@ function App(): React.JSX.Element {
         <h1 className={styles.title}>🍅 Gratio Pomodoro</h1>
       </header>
       <main className={styles.main}>
-        <div style={{ display: activeTab === 'timer' ? undefined : 'none' }}>
-          <Timer />
-        </div>
-        <div style={{ display: activeTab === 'tasks' ? undefined : 'none' }}>
-          <TaskList />
-        </div>
-        <div style={{ display: activeTab === 'history' ? undefined : 'none' }}>
-          <History />
-        </div>
-        <div style={{ display: activeTab === 'settings' ? undefined : 'none' }}>
-          <Settings />
-        </div>
+        {activeTab === 'timer' && <Timer {...timer} />}
+        {activeTab === 'tasks' && <TaskList />}
+        {activeTab === 'history' && <History />}
+        {activeTab === 'settings' && <Settings />}
       </main>
       <nav className={styles.nav}>
         {TABS.map((tab) => (

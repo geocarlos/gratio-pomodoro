@@ -1,9 +1,11 @@
 import React from 'react'
-import { useTimer } from '../../hooks/useTimer'
+import type { useTimer } from '../../hooks/useTimer'
 import { useTimerStore } from '../../store/timerStore'
 import { useTaskStore } from '../../store/taskStore'
 import styles from './Timer.module.css'
 import type { TimerPhase } from '@shared/types'
+
+type TimerControls = ReturnType<typeof useTimer>
 
 const PHASE_LABELS: Record<TimerPhase, string> = {
   focus: 'Focus',
@@ -20,9 +22,7 @@ const PHASE_COLORS: Record<TimerPhase, string> = {
 const RADIUS = 90
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
-export function Timer(): React.JSX.Element {
-  const { phase, state, minutes, seconds, progress, sessionCount, toggle, reset, skip } =
-    useTimer()
+export function Timer({ phase, state, minutes, seconds, progress, sessionCount, toggle, reset, skip }: TimerControls): React.JSX.Element {
   const { totalSessionsToday } = useTimerStore()
   const { tasks, activeTaskId, setActiveTask } = useTaskStore()
   const activeTask = tasks.find((t) => t.id === activeTaskId)

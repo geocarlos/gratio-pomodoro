@@ -32,10 +32,18 @@ function App(): React.JSX.Element {
         <h1 className={styles.title}>🍅 Gratio Pomodoro</h1>
       </header>
       <main className={styles.main}>
-        {activeTab === 'timer' && <Timer />}
-        {activeTab === 'tasks' && <TaskList />}
-        {activeTab === 'history' && <History />}
-        {activeTab === 'settings' && <Settings />}
+        <div style={{ display: activeTab === 'timer' ? undefined : 'none' }}>
+          <Timer />
+        </div>
+        <div style={{ display: activeTab === 'tasks' ? undefined : 'none' }}>
+          <TaskList />
+        </div>
+        <div style={{ display: activeTab === 'history' ? undefined : 'none' }}>
+          <History />
+        </div>
+        <div style={{ display: activeTab === 'settings' ? undefined : 'none' }}>
+          <Settings />
+        </div>
       </main>
       <nav className={styles.nav}>
         {TABS.map((tab) => (

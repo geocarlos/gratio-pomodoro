@@ -1,0 +1,39 @@
+:root {
+  --color-bg: #1a1a2e;
+  --color-surface: #16213e;
+  --color-border: #0f3460;
+  --color-accent: #e94560;
+  --color-text-primary: #eaeaea;
+  --color-text-muted: #8892b0;
+  --color-track: #0f3460;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+#root {
+  height: 100%;
+}
